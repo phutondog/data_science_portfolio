@@ -1,6 +1,6 @@
 # Eric Phu - A Journey Through Data
 ## About
-This is my Data Science portfolio I set up to track my progress.
+This is a collection of all the exersises and projectes I have completed in relation to improving my abilities in Data Science.
 
 ## Data Manipulaion
 1. [67 YEARS OF LEGO](https://github.com/phutondog/data_science_portfolio/blob/master/Exploring%2067%20years%20of%20LEGO/Exploring%20Lego.ipynb)
