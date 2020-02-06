@@ -1,0 +1,21 @@
+Start
+	Declare Array userList
+
+	Display "Enter List"
+	input userList;
+
+	Declare Numeric l = length(userList);
+	Declare Numeric i = 0
+	Declare Array rList(l)
+
+	for i to l
+		Declare Numeric j = l - 1 - i
+		rList[i] = userList[j]
+
+
+	Display rList
+Stop
+
+		
+		
+	

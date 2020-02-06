@@ -1,0 +1,36 @@
+<html>
+<body>
+<script type="text/javascript">
+
+// Program name: Area Triangle
+// Purpose: Calculate area of a triangle
+// Author: Eric Phu
+// Date last modified: 31-Dec-2019
+
+// Variables and constants
+var base;
+var height;
+var area;
+var BR = "<br />";
+
+// Welcome the user
+document.write("Welcome to Eric Phu's Area of a Triangle Calculator." + BR);
+document.write("This program ask for the base and height of a triangle and calculates the area." + BR);
+
+
+// Prompt user for base and height
+base = prompt("Enter the base of the triangle");
+base = parseFloat(base);
+height = prompt("Enter the height of the triangle");
+height = parseFloat(height);
+
+// Calculating area and displaying results
+area = .5 * base*height;
+document.write("The area of the triangle is: " + area + BR);
+
+// Thank the user
+document.write("Thank you for using this program");
+
+</script>
+</body>
+</html>

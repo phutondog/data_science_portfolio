@@ -1,0 +1,61 @@
+<html>
+<body>
+<script type="text/javascript">
+
+var BR = "<br />"
+
+function is1dArray(obj){
+  if (Array.isArray(obj) == false){
+    var result = false;
+  }
+  else{
+    var l = obj.length;
+    for (var i = 0; i < l; i++){
+      if (Array.isArray(obj[i]) == true){
+          result == false
+      }
+    }
+  }
+  if (result == false){
+
+  }
+  else{
+    result = true;
+  }
+  return result;
+}
+
+function reverseList(obj){
+  var rList;
+  var p = is1dArray(obj);
+  if ( p == false){
+    rList = "Not an Array"
+  }
+  else {
+    var l = obj.length;
+    rList = new Array(l)
+
+    for (var i = 0; i < l; i ++){
+      var j = l - 1 - i;
+      rList[i] = obj[j];
+    }
+
+  }
+  return rList;
+}
+
+x = [1,2,3,4,5];
+y = reverseList(x);
+document.write(y + BR);
+
+x = "hello";
+y = reverseList(x);
+document.write(y + BR);
+
+x = ["Bar","Car","Fall"];
+y = reverseList(x);
+document.write(y + BR);
+
+</script>
+</body>
+</html>

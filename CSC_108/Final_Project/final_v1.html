@@ -1,0 +1,398 @@
+<html>
+<head>
+<h1>Final Project! Room Paint Calculator</h1>
+<script type="text/javascript">
+
+/*
+Write a JavaScript program that determines how many gallons of paint are needed to paint a given room.
+Assume that windows are 3 ft. 6 in. by 4 ft.  Assume doors are 3 ft. wide by 6 ft. 8 in. tall.
+Assume walls are 8 ft tall.  Assume 1 gallon of paint covers 100 square feet.
+Ask the user for the length and width of the room, the number of windows, and the number of doors.
+Display the number of gallons needed to paint the room.
+
+windows.width = 18
+windows.height = 48
+window.size =
+
+door.width = 12
+door.height = 80
+door.size =
+
+*/
+
+
+var windowHeight = 48;
+var windowWidth = 18;
+var windowSize = 864;
+
+var doorHeight = 80;
+var doorWidth = 12;
+var doorSize = 960;
+
+var door;
+var wall;
+var amount;
+var wallSpace;
+var x;
+var test;
+var NL = '\n'
+
+
+function can1WindowFit(wall){
+	if(wall >= windowWidth){
+		x = true;
+	}
+	else{
+		x = false;
+	}
+	return x;
+}
+
+function can1DoorFit(wall){
+	if(wall >= doorWidth){
+		x = true;
+	}
+	else{
+		x = false;
+	}
+	return x;
+}
+
+function howManyWindowFit(amount, wallSpace){
+  var windowFit = 0;
+  while (amount != 0 && can1WindowFit(wallSpace)== true){
+    if (amount > 1){
+  		wallSpace = wallSpace - 18;
+  		windowFit += 2;
+  		amount -= 2;
+    }
+		else{
+      wallSpace = wallSpace - 18;
+			windowFit += 1;
+			amount = amount - 1;
+		}
+	}
+	return windowFit;
+}
+
+function howManyDoorFit(amount, wallSpace){
+  var doorFit = 0;
+  while (amount != 0 && can1DoorFit(wallSpace) == true){
+  	wallSpace = wallSpace - 12;
+  	doorFit += 1;
+  	amount -= 1;
+  }
+	return doorFit;
+}
+
+function wallWidthAmount(x){
+  if (x%2 == 0){
+    x = x/2;
+  }
+  else{
+    x = (x + 1)/2;
+  }
+  return x
+}
+
+
+function displayInfo(){
+
+	//
+	var widthFt = document.InfoForm.widthFt.value;
+  var widthIn = document.InfoForm.widthIn.value;
+  var lengthFt = document.InfoForm.lengthFt.value;
+  var lengthIn = document.InfoForm.lengthIn.value;
+  var doorAmount = document.InfoForm.doorAmount.value;
+	var windowAmount = document.InfoForm.windowAmount.value;
+
+	var widthFt = Number(widthFt);
+	var widthIn = Number(widthIn);
+	var lengthFt = Number(lengthFt);
+	var lengthIn = Number(lengthIn);
+	var doorAmount = Number(doorAmount);
+	var windowAmount = Number(windowAmount);
+
+	var userList = [widthFt, widthIn, lengthFt, lengthIn, doorAmount, windowAmount];
+
+	var l = userList.length;
+	var userErr = 0;
+
+	for (var i = 0; i < l; i++){
+		if (isNaN(userList[i]) == true){
+			userErr += 1;
+		}
+	}
+
+
+	if (userErr != 0){
+		return document.InfoForm.fullInfo.value = "Input Error. Please only type numbers.";
+	}
+
+	width = widthFt * 12
+	width = width + widthIn;
+
+	length = lengthFt * 12
+	length = length + lengthIn;
+
+	//wall 1
+	var wall1SpaceLeft = width * 96;
+	var wall1WidthLeft = width;
+
+
+	//wall2
+	var wall2SpaceLeft = width * 96;
+	var wall2WidthLeft = width;
+
+
+	//wall3
+	var wall3SpaceLeft = length * 96;
+	var wall3WidthLeft = length;
+
+	//wall4
+	var wall4SpaceLeft = length * 96;
+	var wall4WidthLeft = length;
+
+	width = widthFt * 12
+	width = width + widthIn;
+
+	length = lengthFt * 12
+	length = length + lengthIn;
+
+	//wall 1
+	var wall1SpaceLeft = width * 96;
+	var wall1WidthLeft = width;
+
+
+	//wall2
+	var wall2SpaceLeft = width * 96;
+	var wall2WidthLeft = width;
+
+
+	//wall3
+	var wall3SpaceLeft = length * 96;
+	var wall3WidthLeft = length;
+
+	//wall4
+	var wall4SpaceLeft = length * 96;
+	var wall4WidthLeft = length;
+
+	var can1WindowWall1 = can1WindowFit(wall1WidthLeft);
+	if (can1WindowWall1 == true){
+		if (windowAmount != 0){
+			wall1Windows = howManyWindowFit(windowAmount, wall1WidthLeft)
+		}
+		else {
+			wall1Windows = 0;
+		}
+	}
+	else{
+		wall1Windows = 0;
+	}
+
+	if (wall1Windows > 0){
+	  windowWidthAmountWall1 = wallWidthAmount(wall1Windows);
+	}
+	else{
+	  windowWidthAmountWall1 = 0;
+	}
+
+	wall1WidthLeft = wall1WidthLeft - windowWidth * windowWidthAmountWall1;
+	wall1SpaceLeft = wall1SpaceLeft - windowSize* wall1Windows;
+
+
+	var can1DoorWall1 = can1DoorFit(wall1SpaceLeft);
+	if (can1DoorWall1 == true){
+		if (doorAmount != 0){
+			wall1Doors = howManyDoorFit(doorAmount, wall1WidthLeft);
+		}
+		else {
+			wall1Doors = 0
+		}
+	}
+	else{
+		wall1Doors = 0;
+	}
+
+	wall1SpaceLeft = wall1SpaceLeft - doorSize*wall1Doors;
+	windowAmount = windowAmount - wall1Windows;
+	doorAmount = doorAmount - wall1Doors;
+
+	//break
+
+	if (windowAmount != 0 || doorAmount != 0){
+
+	  var can1WindowWall2 = can1WindowFit(wall2WidthLeft);
+	  if (can1WindowWall2 == true){
+	  	if (windowAmount != 0){
+	  		wall2Windows = howManyWindowFit(windowAmount, wall2WidthLeft)
+	  	}
+	  	else {
+	  		wall2Windows = 0
+	  	}
+	  }
+	  else {
+	    wall2Windows = 0;	
+	  }
+
+	  if (wall2Windows > 0){
+	    windowWidthAmountWall2 = wallWidthAmount(wall2Windows);
+	  }
+	  else{
+	    windowWidthAmountWall2 = 0;
+	  }
+
+	  wall2WidthLeft = wall2WidthLeft - windowWidth * windowWidthAmountWall2;
+	  wall2SpaceLeft = wall2SpaceLeft - windowSize* wall2Windows;
+
+	  var can1DoorWall2 = can1DoorFit(wall2SpaceLeft);
+
+	  if (can1DoorWall2 == true){
+	  	if (doorAmount != 0){
+	  		wall2Doors = howManyDoorFit(doorAmount, wall2WidthLeft);
+	  	}
+	  	else {
+	  		wall2Doors = 0;
+	  	}
+	  }
+	  else {
+	    wall2Doors = 0;
+	  }
+
+
+	  wall2SpaceLeft = wall2SpaceLeft - doorSize * wall2Doors;
+	  windowAmount = windowAmount - wall2Windows;
+	  doorAmount = doorAmount - wall2Doors;
+
+	  if (windowAmount != 0 || doorAmount != 0){
+
+	    var can1WindowWall3 = can1WindowFit(wall3WidthLeft);
+	    if (can1WindowWall3 == true){
+	    	if (windowAmount != 0){
+	    		wall3Windows = howManyWindowFit(windowAmount, wall3WidthLeft)
+	    	}
+	    	else {
+	    		wall3Windows = 0
+	    	}
+	    }
+	    else{
+		wall3Windows = 0;
+	    }
+
+	    if (wall3Windows > 0){
+	      windowWidthAmountWall3 = wallWidthAmount(wall3Windows);
+	    }
+	    else{
+	      windowWidthAmountWall3 = 0;
+	    }
+
+	    wall3WidthLeft = wall3WidthLeft - windowWidth * windowWidthAmountWall3;
+	    wall3SpaceLeft = wall3SpaceLeft - windowSize* wall3Windows;
+
+	    var can1DoorWall3 = can1DoorFit(wall3SpaceLeft);
+	    if (can1DoorWall3 == true){
+	    	if (doorAmount != 0){
+	    		wall3Doors = howManyDoorFit(doorAmount, wall3WidthLeft);
+	    	}
+	    	else {
+	    		wall3Doors = 0
+	    	}
+	    }
+
+	    else {
+		wall3Doors = 0;
+	    }
+
+	    wall3SpaceLeft = wall3SpaceLeft - doorSize * wall3Doors;
+	    windowAmount = windowAmount - wall3Windows;
+	    doorAmount = doorAmount - wall3Doors;
+
+	    if (windowAmount != 0 || doorAmount != 0){
+
+	      var can1WindowWall4 = can1WindowFit(wall4WidthLeft);
+	      if (can1WindowWall4 == true){
+	      	if (windowAmount != 0){
+	      		wall4Windows = howManyWindowFit(windowAmount, wall4WidthLeft)
+	      	}
+	      	else {
+	      		wall4Windows = 0
+	      	}
+	      }	
+
+	      else {
+		wall4Windows = 0;
+	      }
+
+	      if (wall4Windows > 0){
+	        windowWidthAmountWall4 = wallWidthAmount(wall4Windows);
+	      }
+	      else{
+	        windowWidthAmountWall4 = 0;
+	      }
+
+	      wall4WidthLeft = wall4WidthLeft - windowWidth * windowWidthAmountWall4;
+	      wall4SpaceLeft = wall4SpaceLeft - windowSize* wall4Windows;
+
+	      var can1DoorWall4 = can1DoorFit(wall4SpaceLeft);
+	      if (can1DoorWall4 == true){
+	        if (doorAmount != 0){
+	          wall4Doors = howManyDoorFit(doorAmount, wall4WidthLeft);
+	        }
+	        else {
+	          wall4Doors = 0;
+	        }
+	      }
+
+	      else{
+		wall4Doors = 0;
+	      }
+
+	      wall4SpaceLeft = wall4SpaceLeft - doorSize * wall4Doors;
+	      windowAmount = windowAmount - wall4Windows;
+	      doorAmount = doorAmount - wall4Doors;
+
+	      //End of if Wall 4
+	    }
+
+	    //End of if Wall 3
+	  }
+
+	}
+
+	if (windowAmount != 0 || doorAmount != 0){
+	  document.InfoForm.fullInfo.value = "The amount of doors or windows will not fit the room's parameters";
+	}
+	else{
+	  var finalSpaceLeft = wall1SpaceLeft + wall2SpaceLeft + wall3SpaceLeft + wall4SpaceLeft;
+	  var gallons = finalSpaceLeft/1200;
+		document.InfoForm.fullInfo.value = "Free space needed to be painted: " + finalSpaceLeft + " Square In" + NL +
+																				"Gallons of paint needed: " + gallons;
+
+	}
+
+
+}
+
+</script>
+</head>
+
+<body bgcolor="WhiteSmoke">
+<form name="InfoForm" action="">
+
+<strong>Type Width, Length, Door Amount, and Window Amount</strong><br />
+Width<br />
+<input type="text" name="widthFt" value="" size="4">ft
+<input type="text" name="widthIn" value="" size="3">in<br />
+Length<br />
+<input type="text" name="lengthFt" value="" size="4">ft
+<input type="text" name="lengthIn" value="" size="3">in<br />
+Doors:<input type="text" name="doorAmount" value="" size="4">
+Windows:<input type="text" name="windowAmount" value="" size="4"><p />
+<input type="button" name="displayButton" value="Display Info" onclick="displayInfo()" /><p />
+<textarea name="fullInfo" readonly="true" value="" rows="8" cols="80" /></textarea><br />
+
+</form>
+</body>
+
+</body>
+</html>

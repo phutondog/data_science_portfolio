@@ -1,0 +1,46 @@
+<html>
+<body>
+<script type="text/javascript">
+
+//Program name: Bank Loan Approver
+//Purpose: Test Decision Table
+//Author: Eric Phu
+//Last Modified: 1-4-2020
+
+var income;
+var creditScore;
+var job;
+var approved = "Congrats you are approved.";
+var BR = "<br />";
+
+document.write("Welcome to the Bank Loan Approver." + BR);
+
+//Input from user
+income = prompt("Did you make more then 40,000 this year (Type Y/N)");
+income = income.toUpperCase();
+creditScore = prompt("Is your credit score 600 or greater (Type Y/N)");
+creditScore = creditScore.toUpperCase();
+job = prompt("Have you worked at your current job for more than 12 months (Type Y/N)");
+job = job.toUpperCase()
+
+//Complex Conditions
+if (income == "Y" && creditScore == "Y"){
+  document.write(approved);
+}
+//Complex Conditions
+if (income == "Y" && creditScore == "Y"){
+  document.write(approved);
+}
+else if (income == "Y" && job == "Y") {
+  document.write(approved);
+}
+else if (creditScore == "Y" && job == "Y") {
+  document.write(approved);
+}
+else{
+  document.write("Unfortuantly you have been denied");
+}
+
+</script>
+</body>
+</html>

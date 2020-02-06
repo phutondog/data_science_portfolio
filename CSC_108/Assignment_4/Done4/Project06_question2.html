@@ -1,0 +1,46 @@
+<html>
+<body>
+<script type="text/javascript">
+
+
+//Declare varibles
+
+var counter = 0;
+var sumDie = 0;
+var yes = 1;
+var BR = "<br />"
+
+
+function sumTwoDie(){
+  var dice1 = Math.floor(Math.random() * (6 - 1 + 1)) + 1;
+  var dice2 = Math.floor(Math.random() * (6 - 1 + 1)) + 1;
+  sumDie = dice1 + dice2;
+  counter = counter + 1
+  document.write("Roll " + counter + " was " + sumDie + "." + BR);
+  return sumDie;
+}
+
+document.write("Welcome to dice machine. The conter will stop when 2, 3, 6, 12 come up." + BR);
+sumTwoDie();
+
+while (yes == 1){
+  if (sumDie == 2){
+    yes = 0;
+  }
+  else if (sumDie == 3) {
+    yes = 0;
+  }
+  else if (sumDie == 6) {
+    yes = 0;
+  }
+  else if (sumDie == 12) {
+    yes = 0;
+  }
+  else{
+    sumTwoDie();
+  }
+}
+ document.write(" It took " + counter + " rolls to reach the desired sums.");
+</script>
+</body>
+</html>

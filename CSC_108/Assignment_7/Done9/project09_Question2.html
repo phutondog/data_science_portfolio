@@ -1,0 +1,58 @@
+<html>
+<head>
+<h1>Sign Up For Eric's Gym!</h1>
+<script type="text/javascript">
+var NL = "\n"
+
+function displayInfo(){
+  var firstName = document.InfoForm.firstName.value;
+  var lastName = document.InfoForm.lastName.value;
+  var dateOfBirth = document.InfoForm.dateOfBirth.value;
+  var weightGoal = document.InfoForm.weightGoal.value;
+  var email = document.InfoForm.email.value;
+  var errMsg = "";
+  var mm = dateOfBirth.substr(0,2)
+  var dd = dateOfBirth.substr(3,2)
+  var yy = dateOfBirth.substr(6,2)
+
+  if (firstName.length <= 0) errMsg = errMsg + "First name required." + NL;
+  if (lastName.length <= 0) errMsg = errMsg + "Last name required." + NL;
+  if (dateOfBirth.length != 8) errMsg = errMsg + "Incorrect date format please follow mm/dd/yy" + NL;
+  if (isNaN(Number(mm))) errMsg = errMsg + "Incorrect date format please follow mm/dd/yy" + NL;
+  if (Number(mm) < 1 || Number(mm) > 12 ) errMsg = errMsg + "There is somthing wrong with your months please follow mm/dd/yy" + NL;
+  if (isNaN(Number(dd))) errMsg = errMsg + "Incorrect date format please follow mm/dd/yy" + NL;
+  if (Number(dd) < 1 || Number(dd) > 31 ) errMsg = errMsg + "There is somthing wrong with your days please follow mm/dd/yy" + NL;
+  if (dateOfBirth.substr(5,1) != "/") errMsg = errMsg + "Incorrect date format please follow mm/dd/yy" + NL;
+  if (weightGoal.length < 1)  errMsg = errMsg + "Please enter weight goal." + NL;
+  if (isNaN(Number(yy))) errMsg = errMsg + "Incorrect date format please follow mm/dd/yy" + NL;
+  if (isNaN(weightGoal))  errMsg = errMsg + "Weight goal must include only digits." + NL;
+  if (email.indexOf("@") <= 0) errMsg = errMsg +  "Invalid e-mail address." + NL;
+  if (email.indexOf(".") <= 0) errMsg = errMsg +  "Invalid e-mail address." + NL;
+  if (errMsg.length > 0) {
+     document.InfoForm.fullInfo.value = errMsg;
+   }
+  else {
+   document.InfoForm.fullInfo.value = "Congrats " + firstName + ", you're signed up to the gym." + NL
+                                      + "An email will be sent to: " + email + " for confirmation" + NL
+                                      + "You will reach " + weightGoal + " in no time!"
+ }
+}
+
+</script>
+</head>
+
+<body bgcolor="WhiteSmoke">
+<form name="InfoForm" action="">
+
+<strong>Enter your name, date of birth (mm/dd/yy), weight goal, and e-mail address:</strong><br />
+First name:<input type="text" name="firstName" value="" size="40"><br />
+Last name:<input type="text" name="lastName" value="" size="40"><br />
+Date of Birth:<input type="text" name="dateOfBirth" value="" size="8">
+Weight Goal:<input type="text" name="weightGoal" value="" size="3"><br />
+E-mail address:<input type="text" name="email" value="" size="40"><p />
+<input type="button" name="displayButton" value="Display Info" onclick="displayInfo()" /><p />
+<textarea name="fullInfo" readonly="true" value="" rows="8" cols="80" /></textarea><br />
+
+</form>
+</body>
+</html>

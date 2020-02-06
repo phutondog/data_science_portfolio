@@ -1,0 +1,24 @@
+<html>
+<body>
+<script type="text/javascript">
+
+var word
+var num;
+var lengthStr
+var numPerm = 1
+
+function calcNumWays(word) {
+  num = word.length;
+  while (num > 0) {
+    numPerm = numPerm * num;
+    num = num - 1;
+  }
+return numPerm;
+}
+
+word = prompt("Enter a word and I'll tell you how many ways it can be permutated.")
+calcNumWays(word);
+document.write("The word can be rearragned in " + numPerm + " amount of ways including non-unique permentations.");
+</script>
+</body>
+</html>

@@ -1,0 +1,101 @@
+<html>
+<body>
+<script type="text/javascript">
+
+var error;
+var obj;
+var r;
+var BR = "<br />";
+
+function is2dArray(obj){
+  error = false;
+  var l = obj.length;
+  if (Array.isArray(obj) == false) {
+    error = true;
+  }
+  else{
+    for (var i = 0; i < l; i++){
+      if (Array.isArray(obj[i]) == false){
+        error = true;
+      }
+      else {
+        k = obj[i].length;
+        for (var j = 0; j < k; j++){
+          if (Array.isArray(obj[i][j]) == true){
+            error = true
+          }
+        }
+        if (i > 0){
+          m = i - 1
+          if (obj[i].length != obj[m].length){
+            error = true;
+          }
+        }
+      }
+
+
+
+
+        }
+      }
+
+  if (error == true){
+    error = true
+  }
+  else {
+    error = false;
+  }
+  return error;
+}
+
+function copy2array(obj2){
+  var funx;
+  funx = is2dArray(obj2);
+  if (funx == true){
+    r = "Object not a 2d Array"
+  }
+  else {
+    l = obj2.length;
+    var r = new Array(l);
+
+    for(var i = 0; i < l; i++){
+      k = obj2[i].length;
+      r[i] = new Array(k);
+    }
+
+    for(var i = 0; i < l; i++){
+      for(var j = 0; j < k; j++){
+        r[i][j] = obj2[i][j];
+      }
+    }
+  }
+
+  return r;
+
+}
+
+var test1 = [[1,2,3],[3,4]];
+var test2 = [[1,2],[3,4]];
+var test3 = [[1,2],[3,4,5]];
+var test4 = [[1,2],[3,4],[5,6],[7,8]];
+var test5 = [[[1,2],[3,4]],[[3,4],[3,4]]];
+
+
+x = copy2array(test1)
+document.write(x + BR)
+
+x = copy2array(test2)
+document.write(x + BR)
+
+x = copy2array(test3)
+document.write(x + BR)
+
+x = copy2array(test4)
+document.write(x + BR)
+
+x = copy2array(test5)
+document.write(x + BR)
+
+</script>
+</body>
+</html>
