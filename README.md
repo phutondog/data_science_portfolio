@@ -8,5 +8,4 @@ This is a collection of all the exersises and projectes I have completed in rela
 2. [DR. SEMMELWEIS AND THE DISCOVERY OF HANDWASHING](https://github.com/phutondog/data_science_portfolio/blob/master/Dr.%20Semmelweis%20and%20the%20Discovery%20of%20Handwashing/notebook.ipynb) - In 1847, Ignaz Semmelweis makes a breakthough discovery: Contaminated hands was a major cause of childbed fever and by enforcing handwashing at his hospital he saved hundreds of lives. We reanalize his data to confirm his findings.
 
 ## Class Work
-1. [INTO TO PROGRAMMING]
-()
+1. [INTO TO PROGRAMMING](https://github.com/phutondog/data_science_portfolio/tree/master/CSC_108)
